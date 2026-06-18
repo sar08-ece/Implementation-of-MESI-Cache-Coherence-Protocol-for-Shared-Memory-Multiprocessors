@@ -25,7 +25,8 @@ The objective is to maintain data consistency across caches while minimizing unn
 
 ## System Architecture
 
-> Insert architecture diagram here
+<img width="2720" height="2080" alt="mesi_cache_coherency_architecture" src="https://github.com/user-attachments/assets/61362333-972c-42c6-85d5-507ec7332aa6" />
+
 
 The system consists of:
 
@@ -43,7 +44,6 @@ Caches communicate through bus transactions and monitor each other's requests to
 
 ## MESI States
 
-> Insert MESI state diagram here
 
 ### Modified (M)
 
@@ -221,3 +221,4 @@ M → S
 
 ### BusRdX on Modified Line
 
+M → I

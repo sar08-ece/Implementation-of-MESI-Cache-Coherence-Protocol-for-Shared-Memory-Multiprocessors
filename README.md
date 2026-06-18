@@ -222,3 +222,26 @@ M → S
 ### BusRdX on Modified Line
 
 M → I
+
+
+Transition table
+
+| Current State | Event                    | Next State | Action                 |
+| ------------- | ------------------------ | ---------- | ---------------------- |
+| I             | Read Miss, no sharers    | E          | BusRd                  |
+| I             | Read Miss, sharers exist | S          | BusRd                  |
+| I             | Write Miss               | M          | BusRdX                 |
+| E             | Read Hit                 | E          | No bus transaction     |
+| E             | Write Hit                | M          | Silent upgrade         |
+| E             | BusRd from other cache   | S          | Share data             |
+| E             | BusRdX from other cache  | I          | Invalidate             |
+| S             | Read Hit                 | S          | No bus transaction     |
+| S             | Write Hit                | M          | BusUpgr                |
+| S             | BusRd from other cache   | S          | Remain shared          |
+| S             | BusUpgr from other cache | I          | Invalidate             |
+| S             | BusRdX from other cache  | I          | Invalidate             |
+| M             | Read Hit                 | M          | No bus transaction     |
+| M             | Write Hit                | M          | No bus transaction     |
+| M             | BusRd from other cache   | S          | Flush data, downgrade  |
+| M             | BusRdX from other cache  | I          | Flush data, invalidate |
+

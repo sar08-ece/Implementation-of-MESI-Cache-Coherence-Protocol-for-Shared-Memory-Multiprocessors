@@ -1,0 +1,177 @@
+# SIMULATION RESULTS OF MESI CACHE COHERENCE INDICATING ALL THE MESI TRANSACTIONS
+# 
+# CACHE0 READ
+# T=0 | IDX=X | C0= | C1=
+# T=10 | IDX=0 | C0=I | C1=I
+# COMPARE hit=0 write_en=0 addr=5
+# T=20 | IDX=0 | C0=I | C1=I
+# BUSRD REQUEST : Addr=5
+# T=30 | IDX=5 | C0=I | C1=I
+# REFILL -> E
+# REFILL : Addr=5 Data=600
+# T=40 | IDX=0 | C0=I | C1=I
+# T=50 | IDX=0 | C0=I | C1=I
+# T=60 | IDX=0 | C0=I | C1=I
+# T=70 | IDX=0 | C0=I | C1=I
+# 
+# CACHE1 READ SAME ADDRESS
+# T=80 | IDX=0 | C0=I | C1=I
+# T=90 | IDX=0 | C0=I | C1=I
+# COMPARE hit=0 write_en=0 addr=5
+# T=100 | IDX=0 | C0=I | C1=I
+# BUSRD REQUEST : Addr=5
+# T=110 | IDX=5 | C0=E | C1=I
+# SNOOP : E -> S Addr=5
+# REFILL -> S
+# REFILL : Addr=5 Data=600
+# T=120 | IDX=0 | C0=I | C1=I
+# T=130 | IDX=0 | C0=I | C1=I
+# T=140 | IDX=0 | C0=I | C1=I
+# T=150 | IDX=0 | C0=I | C1=I
+# 
+# CACHE0 WRITE SAME ADDRESS
+# T=160 | IDX=0 | C0=I | C1=I
+# T=170 | IDX=0 | C0=I | C1=I
+# COMPARE hit=1 write_en=1 addr=5
+# T=180 | IDX=0 | C0=I | C1=I
+# T=190 | IDX=5 | C0=M | C1=S
+# SNOOP : S -> I (BusUpgr) Addr=5
+# T=200 | IDX=0 | C0=I | C1=I
+# COMPARE hit=1 write_en=0 addr=5
+# T=210 | IDX=0 | C0=I | C1=I
+# 
+# CACHE0 WRITE MISS
+# T=220 | IDX=0 | C0=I | C1=I
+# T=230 | IDX=0 | C0=I | C1=I
+# COMPARE hit=0 write_en=1 addr=10
+# T=240 | IDX=0 | C0=I | C1=I
+# T=250 | IDX=10 | C0=I | C1=I
+# REFILL -> M Addr=10 Data=777
+# BUSRDX SEEN addr=10
+# BUSRDX SEEN addr=10
+# T=260 | IDX=0 | C0=I | C1=I
+# T=270 | IDX=0 | C0=I | C1=I
+# T=280 | IDX=0 | C0=I | C1=I
+# T=290 | IDX=0 | C0=I | C1=I
+# T=300 | IDX=0 | C0=I | C1=I
+# T=310 | IDX=0 | C0=I | C1=I
+# 
+# CACHE1 READ MODIFIED LINE
+# T=320 | IDX=0 | C0=I | C1=I
+# T=330 | IDX=0 | C0=I | C1=I
+# COMPARE hit=0 write_en=0 addr=10
+# T=340 | IDX=0 | C0=I | C1=I
+# BUSRD REQUEST : Addr=10
+# T=350 | IDX=10 | C0=M | C1=I
+# SNOOP : M -> S (Flush) Addr=10
+# REFILL -> S
+# REFILL : Addr=10 Data=x
+# T=360 | IDX=0 | C0=I | C1=I
+# MEMORY UPDATED: mem[10] = 777
+# T=370 | IDX=0 | C0=I | C1=I
+# T=380 | IDX=0 | C0=I | C1=I
+# T=390 | IDX=0 | C0=I | C1=I
+# T=400 | IDX=0 | C0=I | C1=I
+# T=410 | IDX=0 | C0=I | C1=I
+# T=420 | IDX=0 | C0=I | C1=I
+# T=430 | IDX=0 | C0=I | C1=I
+# 
+# CACHE1 WRITE TO MODIFIED LINE
+# T=440 | IDX=0 | C0=I | C1=I
+# T=450 | IDX=0 | C0=I | C1=I
+# COMPARE hit=1 write_en=1 addr=10
+# T=460 | IDX=0 | C0=I | C1=I
+# T=470 | IDX=10 | C0=S | C1=M
+# SNOOP : S -> I (BusUpgr) Addr=10
+# T=480 | IDX=0 | C0=I | C1=I
+# COMPARE hit=1 write_en=0 addr=10
+# T=490 | IDX=0 | C0=I | C1=I
+# T=500 | IDX=0 | C0=I | C1=I
+# T=510 | IDX=0 | C0=I | C1=I
+# 
+# CACHE1 WRITE MISS TO MODIFIED LINE
+# T=520 | IDX=0 | C0=I | C1=I
+# T=530 | IDX=0 | C0=I | C1=I
+# COMPARE hit=1 write_en=1 addr=10
+# T=540 | IDX=0 | C0=I | C1=I
+# T=550 | IDX=0 | C0=I | C1=I
+# COMPARE hit=1 write_en=1 addr=10
+# T=560 | IDX=0 | C0=I | C1=I
+# T=570 | IDX=0 | C0=I | C1=I
+# T=580 | IDX=0 | C0=I | C1=I
+# T=590 | IDX=0 | C0=I | C1=I
+# T=600 | IDX=0 | C0=I | C1=I
+# T=610 | IDX=0 | C0=I | C1=I
+# COMPARE hit=1 write_en=1 addr=5
+# T=620 | IDX=0 | C0=I | C1=I
+# T=630 | IDX=0 | C0=I | C1=I
+# T=640 | IDX=0 | C0=I | C1=I
+# T=650 | IDX=0 | C0=I | C1=I
+# T=660 | IDX=0 | C0=I | C1=I
+# T=670 | IDX=0 | C0=I | C1=I
+# 
+# CREATE M IN CACHE0
+# T=680 | IDX=0 | C0=I | C1=I
+# T=690 | IDX=0 | C0=I | C1=I
+# COMPARE hit=0 write_en=1 addr=30
+# T=700 | IDX=0 | C0=I | C1=I
+# T=710 | IDX=14 | C0=I | C1=I
+# REFILL -> M Addr=30 Data=3333
+# BUSRDX SEEN addr=30
+# BUSRDX SEEN addr=30
+# T=720 | IDX=0 | C0=I | C1=I
+# T=730 | IDX=0 | C0=I | C1=I
+# T=740 | IDX=0 | C0=I | C1=I
+# T=750 | IDX=0 | C0=I | C1=I
+# T=760 | IDX=0 | C0=I | C1=I
+# T=770 | IDX=0 | C0=I | C1=I
+# 
+# BUSRDX TEST M_TO_I
+# T=780 | IDX=0 | C0=I | C1=I
+# T=790 | IDX=0 | C0=I | C1=I
+# COMPARE hit=0 write_en=1 addr=30
+# T=800 | IDX=0 | C0=I | C1=I
+# T=810 | IDX=14 | C0=M | C1=I
+# BUSRDX SEEN addr=30
+# SNOOP : M -> I Addr=30
+# REFILL -> M Addr=30 Data=4444
+# BUSRDX SEEN addr=30
+# T=820 | IDX=0 | C0=I | C1=I
+# MEMORY UPDATED: mem[30] = 3333
+# T=830 | IDX=0 | C0=I | C1=I
+# T=840 | IDX=0 | C0=I | C1=I
+# T=850 | IDX=0 | C0=I | C1=I
+# T=860 | IDX=0 | C0=I | C1=I
+# T=870 | IDX=0 | C0=I | C1=I
+# T=880 | IDX=0 | C0=I | C1=I
+# T=890 | IDX=0 | C0=I | C1=I
+# T=900 | IDX=0 | C0=I | C1=I
+# T=910 | IDX=0 | C0=I | C1=I
+# COMPARE hit=0 write_en=0 addr=21
+# T=920 | IDX=0 | C0=I | C1=I
+# WRITE BACK : Addr=5 Data=1111
+# T=930 | IDX=0 | C0=I | C1=I
+# BUSRD REQUEST : Addr=21
+# MEMORY UPDATED: mem[5] = 1111
+# T=940 | IDX=5 | C0=M | C1=I
+# REFILL -> E
+# REFILL : Addr=21 Data=x
+# T=950 | IDX=0 | C0=I | C1=I
+# T=960 | IDX=0 | C0=I | C1=I
+# T=970 | IDX=0 | C0=I | C1=I
+# T=980 | IDX=0 | C0=I | C1=I
+# T=990 | IDX=0 | C0=I | C1=I
+# T=1000 | IDX=0 | C0=I | C1=I
+# T=1010 | IDX=0 | C0=I | C1=I
+# T=1020 | IDX=0 | C0=I | C1=I
+# T=1030 | IDX=0 | C0=I | C1=I
+# T=1040 | IDX=0 | C0=I | C1=I
+# T=1050 | IDX=0 | C0=I | C1=I
+# T=1060 | IDX=0 | C0=I | C1=I
+# T=1070 | IDX=0 | C0=I | C1=I
+# T=1080 | IDX=0 | C0=I | C1=I
+# T=1090 | IDX=0 | C0=I | C1=I
+# ** Note: $finish    : D:/modelsim_ae/examples/tb_cache.sv(437)
+#    Time: 1100 ns  Iteration: 0  Instance: /tb_cache
+# 1
+# Break in Module tb_cache at D:/modelsim_ae/examples/tb_cache.sv line 437

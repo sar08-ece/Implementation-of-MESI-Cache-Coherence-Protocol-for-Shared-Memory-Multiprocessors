@@ -1,4 +1,4 @@
-# MESI Cache Coherence Protocol Simulation in SystemVerilog
+# Implementation of MESI Cache Coherence Protocol for Shared Memory Multiprocessors using System Verilog
 
 ## Overview
 
